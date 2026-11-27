@@ -1,34 +1,31 @@
 package Alien;
 
 public class Alien {
-	
-	private int tamanio;
-	private String color;
-	private int numeroOjos;
-	private int numeroBrazos;
-	private int numeroPies;
-	private double precioExtremidad;
-	private double precioOjo;
-	private double precioCuerpo;
-	
-	public Alien(int tamanio,String color) { 
-		
-		if(tamanio < 5) { 
-			this.tamanio = 5;
-		}else if(tamanio > 30) {
+
+    private int tamanio;
+    private String color;
+    private int numeroOjos;
+    private int numeroBrazos;
+    private int numeroPies;
+    private double precioExtremidad;
+    private double precioOjo;
+    private double precioCuerpo;
+
+    public Alien(int tamanio, String color) {
+        if (tamanio < 5) {
+            this.tamanio = 5;
+        } else if (tamanio > 30) {
             this.tamanio = 30;
         } else {
             this.tamanio = tamanio;
-        }		
-		
-		this.color = color;
-		
-		this.precioCuerpo = this.tamanio * 0.20;      
-        this.precioExtremidad = this.tamanio * 0.10;  
-        this.precioOjo = this.tamanio * 0.05;         
+        }
 
-	}
-	
+        this.color = color;
+
+        this.precioCuerpo = this.tamanio * 0.20;
+        this.precioExtremidad = this.tamanio * 0.10;
+        this.precioOjo = this.tamanio * 0.05;
+    }
 
     public int getTamanio() {
         return tamanio;
@@ -62,6 +59,21 @@ public class Alien {
         return precioCuerpo;
     }
 
+    public boolean agregarBrazos(int cantidad) {
+        if (cantidad > 0 && (this.numeroBrazos + this.numeroPies + cantidad <= 10)) {
+            this.numeroBrazos += cantidad;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean agregarPiernas(int cantidad) {
+        if (cantidad > 0 && (this.numeroBrazos + this.numeroPies + cantidad <= 10)) {
+            this.numeroPies += cantidad;
+            return true;
+        }
+        return false;
+    }
 
     public void imprimir() {
         System.out.println("=== Datos del Alien ===");
@@ -75,5 +87,4 @@ public class Alien {
         System.out.println("Precio de ojo: $" + precioOjo);
         System.out.println("=======================");
     }
-	
 }
