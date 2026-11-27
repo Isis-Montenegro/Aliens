@@ -74,6 +74,23 @@ public class Alien {
         }
         return false;
     }
+    
+    public boolean agregarOjos(int cantidad) {
+        int maxOjos;
+        if (this.tamanio <= 10) {
+            maxOjos = 3;
+        } else if (this.tamanio <= 20) {
+            maxOjos = 5;
+        } else {
+            maxOjos = 7;
+        }
+
+        if (cantidad > 0 && (this.numeroOjos + cantidad <= maxOjos)) {
+            this.numeroOjos += cantidad;
+            return true;
+        }
+        return false;
+    }
 
     public void imprimir() {
         System.out.println("=== Datos del Alien ===");
