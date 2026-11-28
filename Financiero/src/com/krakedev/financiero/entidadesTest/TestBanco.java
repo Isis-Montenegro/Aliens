@@ -65,6 +65,41 @@ public class TestBanco {
     }
     
     
+
+    @Test
+    public void testRetirarMontoValido() {
+        Banco banco = new Banco();
+        Cliente cliente = new Cliente("1712345678", "Ana", "Pérez");
+        Cuenta cuenta = banco.crearCuenta(cliente);
+        banco.depositar(200.00, cuenta);
+
+        boolean resultado1 = banco.retirar(50.00, cuenta);
+        assertTrue(resultado1);
+        assertEquals(150.00, cuenta.getSaldoActual(), 0.001);
+
+        boolean resultado2 = banco.retirar(150.00, cuenta);
+        assertTrue(resultado2);
+        assertEquals(0.0, cuenta.getSaldoActual(), 0.001);
+    }
+
+    @Test
+    public void testRetirarMontoInvalido() {
+        Banco banco = new Banco();
+        Cliente cliente = new Cliente("1712345678", "Ana", "Pérez");
+        Cuenta cuenta = banco.crearCuenta(cliente);
+        banco.depositar(100.00, cuenta);
+
+        assertFalse(banco.retirar(0, cuenta));
+        assertEquals(100.00, cuenta.getSaldoActual(), 0.001);
+
+        assertFalse(banco.retirar(-20.00, cuenta));
+        assertEquals(100.00, cuenta.getSaldoActual(), 0.001);
+
+        assertFalse(banco.retirar(150.00, cuenta));
+        assertEquals(100.00, cuenta.getSaldoActual(), 0.001);
+    }
+    
+    
     
     
     
