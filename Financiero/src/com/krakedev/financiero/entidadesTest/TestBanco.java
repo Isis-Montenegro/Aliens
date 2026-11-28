@@ -99,6 +99,43 @@ public class TestBanco {
         assertEquals(100.00, cuenta.getSaldoActual(), 0.001);
     }
     
+    @Test
+    public void testTransferirExitoso() {
+        Banco banco = new Banco();
+        Cliente cliente1 = new Cliente("1712345678", "Ana", "Pérez");
+        Cliente cliente2 = new Cliente("1798765432", "Luis", "Gómez");
+
+        Cuenta origen = banco.crearCuenta(cliente1);
+        Cuenta destino = banco.crearCuenta(cliente2);
+        banco.depositar(300.00, origen);
+
+        boolean resultado = banco.transferir(origen, destino, 120.50);
+
+        assertTrue(resultado);
+        assertEquals(179.50, origen.getSaldoActual(), 0.001);
+        assertEquals(120.50, destino.getSaldoActual(), 0.001);
+    }
+
+    @Test
+    public void testTransferirFallido() {
+        Banco banco = new Banco();
+        Cliente cliente1 = new Cliente("1712345678", "Ana", "Pérez");
+        Cliente cliente2 = new Cliente("1798765432", "Luis", "Gómez");
+
+        Cuenta origen = banco.crearCuenta(cliente1);
+        Cuenta destino = banco.crearCuenta(cliente2);
+        banco.depositar(100.00, origen);
+
+        assertFalse(banco.transferir(origen, destino, 150.00));
+        assertEquals(100.00, origen.getSaldoActual(), 0.001);
+        assertEquals(0.0, destino.getSaldoActual(), 0.001);
+
+        assertFalse(banco.transferir(origen, destino, -50.00));
+        assertFalse(banco.transferir(origen, destino, 0));
+        assertEquals(100.00, origen.getSaldoActual(), 0.001);
+        assertEquals(0.0, destino.getSaldoActual(), 0.001);
+    }
+    
     
     
     
