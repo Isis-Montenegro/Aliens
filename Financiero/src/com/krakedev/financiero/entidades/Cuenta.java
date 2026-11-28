@@ -8,9 +8,10 @@ public class Cuenta {
 	private Cliente propietario;
 
 	public Cuenta(String id) {
-		this.id = id;
-		this.saldoActual = 0;
-		this.tipo = "A";
+	    this.id = id;
+	    this.saldoActual = 0;
+	    this.tipo = "A";
+	    this.propietario = new Cliente();
 	}
 
 	public String getId() {

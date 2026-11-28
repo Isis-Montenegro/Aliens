@@ -14,6 +14,9 @@ public class Cliente {
         this.apellido = apellido;
 		
 	}
+	
+	public Cliente() {
+	}
 
 
 	public String getCedula() {
