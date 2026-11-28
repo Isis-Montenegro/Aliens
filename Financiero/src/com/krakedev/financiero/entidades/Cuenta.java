@@ -45,17 +45,12 @@ public class Cuenta {
 		this.propietario = propietario;
 	}
 
-	public void imprimir() {
-		System.out.println("ID: " + this.id);
-		System.out.println("Saldo Actual: " + this.saldoActual);
-		System.out.println("Tipo: " + this.tipo);
-		if (this.propietario != null) {
-			System.out.println("Cédula cliente: " + this.propietario.getCedula());
-			System.out
-					.println("Nombre cliente: " + this.propietario.getNombre() + " " + this.propietario.getApellido());
 
-		} else {
-			System.out.println("Propietario: No asignado");
-		}
+	public void imprimir() {
+    System.out.println("ID: " + this.id);
+    System.out.println("Saldo Actual: " + this.saldoActual);
+    System.out.println("Tipo: " + this.tipo);
+    System.out.println("Cédula cliente: " + this.propietario.getCedula());
 	}
+	
 }
